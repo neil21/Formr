@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- saved from url=(0034)http://gdd11-webgl.appspot.com/#41 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <title>Introduction to WebGL</title>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <script src="./Introduction to WebGL_files/config.js"></script>
+  <script src="./Introduction to WebGL_files/slides.js"></script>
+
+  <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|Droid+Sans+Mono&v2">
+<meta name="viewport" content="width=1100,height=750"><meta name="apple-mobile-web-app-capable" content="yes"></head>
+<body style="display: none" class="loaded">
+
+<section class="slides layout-regular">
+
+  <article class="title-slide" data-slide-num="1" data-total-slides="47">
+    <div>
+      <div data-config-logo="" style="background-image: url(http://www.google.com/events/developerday/2011/static/img/event-prague.png); "></div>
+      <p data-config-name="">Ilmari Heikkinen</p>
+      <p style="color:#545454;">Enter the Third Dimension:</p>
+      <h1>Introduction to WebGL</h1>
+      <p class="info">
+        <time datetime="2011-10-18" data-config-date="">October 18, 2011</time> &nbsp; - &nbsp; <span data-config-location="">Prague, Czech Republic</span>
+      </p>
+      <img data-config-map="" class="rounded" title="Of course we&#39;re using Geolocation!" alt="Of course we&#39;re using Geolocation!">
+    </div>
+  </article>
+  
+  <article id="who" data-slide-num="2" data-total-slides="47">
+    <h3>Who?</h3>
+    <p>
+      <img class="avatar rounded" data-config-pic="" src="./Introduction to WebGL_files/profipic.jpg">
+    </p>
+    <p>
+      <a rel="author" data-config-gplus="" target="_blank" href="http://fhtr.org/plus">
+        <img src="./Introduction to WebGL_files/gprofile_button-44.png" width="44" height="44">
+      </a> +<a rel="author" data-config-gplus="" target="_blank" href="http://fhtr.org/plus"><span data-config-name="">Ilmari Heikkinen</span></a>
+    </p>
+    <br>
+    <p>
+      <a rel="author" data-config-twitter="" target="_blank" style="margin-left:-8px;" href="http://twitter.com/ilmarihei">
+        <img src="./Introduction to WebGL_files/twitter_newbird_blue.png" width="58" height="58">
+      </a> @ <a rel="author" data-config-twitter="" target="_blank" style="margin-left:-8px;" href="http://twitter.com/ilmarihei"><span data-config-twitter="">ilmarihei</span></a>
+    </p>
+    <p>
+      <a rel="author" data-config-blog="" target="_blank" href="http://fhtr.blogspot.com/"><span data-config-blog="">http://fhtr.blogspot.com</span></a>
+    </p>
+  </article>
+
+  <article data-slide-num="3" data-total-slides="47">
+    <h3>Today's agenda</h3>
+    <ul>
+      <li>An overview of WebGL</li>
+      <li>Small Three.js tutorial</li>
+    </ul>
+  </article>
+
+  <article class="title" data-slide-num="4" data-total-slides="47">
+    <h2>WebGL</h2>
+  </article>
+
+  <article data-slide-num="5" data-total-slides="47">
+    <h3>What is WebGL?</h3>
+    <ul>
+      <li>A Khronos group standard</li>
+      <li>JavaScript meets the GPU</li>
+      <li>Fast programmable drawing</li>
+      <li>OpenGL ES 2.0 for HTML5 Canvas</li>
+    </ul>
+  </article>
+
+  <article data-slide-num="6" data-total-slides="47">
+    <h3>What can you do with it?</h3>
+    <ul><li>Shader-based drawing</li></ul>
+    <br><br>
+    <h3>What?</h3>
+    <ul>
+      <li>2D graphics</li>
+      <li>3D graphics</li>
+    </ul>
+    <br>
+    <p>But in a very <i>generic</i> fashion.</p>
+  </article>
+
+  <article data-slide-num="7" data-total-slides="47">
+    <h3>Basic idea</h3>
+    <p>Send a list of points to WebGL</p>
+    <p>Vertex shader places them on the screen</p>
+    <p>Fragment shader colors the pixels using vertex shader output</p>
+  </article>
+
+  <article data-slide-num="8" data-total-slides="47">
+    <h3>And...?</h3>
+    <p>That's pretty much it.</p>
+    <p>WebGL is just a fast way to put lots of triangles, lines and points on the screen.</p>
+    <p>How to transform the vertices and shade the pixels is up to the programmer.</p>
+  </article>
+
+  <article class="nobackground" data-slide-num="9" data-total-slides="47">
+    <h3>You can either do this, or...</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="nobackground" data-slide-num="10" data-total-slides="47">
+    <h3>...this.</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article data-slide-num="11" data-total-slides="47">
+    <h3>What browsers support it?</h3>
+      <p>Chrome</p>
+      <p>Firefox</p>
+      <p>Safari (switch to Developer mode, enable WebGL from menu)</p>
+      <p>Opera 12+</p>
+      <p>Chrome Frame</p>
+      <p>IEWebGL, cWebGL</p>
+  </article>
+
+  <article data-slide-num="12" data-total-slides="47">
+    <h3>What can you use it for?</h3>
+      <p>Games</p>
+      <p>Image filters</p>
+      <p>Data visualization</p>
+      <p>3D applications</p>
+      <p>And other things that need fast programmable drawing</p>
+  </article>
+
+  <article data-slide-num="13" data-total-slides="47">
+    <h3>Let's talk about libraries</h3>
+    <p>Get things done faster</p>
+    <p>Write less boilerplate</p>
+    <p>Let's talk about three.js</p>
+  </article>
+
+
+  <article class="title" data-slide-num="14" data-total-slides="47">
+    <h2>Three.js?</h2>
+  </article>
+
+  <article data-slide-num="15" data-total-slides="47">
+    <h3>Three.js is a JS 3D Engine</h3>
+    <ul>
+      <li><a href="https://github.com/mrdoob/three.js/">github.com/mrdoob/three.js</a></li>
+      <li>Lightweight</li>
+      <li>Easy to use</li>
+      <li>Batteries included</li>
+      <li>WebGL renderer (our focus today)</li>
+      <li>Also has Canvas and SVG renderers</li>
+    </ul>
+  </article>
+
+  <article class="title" data-slide-num="16" data-total-slides="47">
+    <h2>Basic setup</h2>
+  </article>
+
+  <article data-slide-num="17" data-total-slides="47">
+    <h3>Renderer</h3>
+    <p>Create a WebGLRenderer</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> renderer </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">WebGLRenderer</span><span class="pun">({</span><span class="pln">antialias</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">});</span><span class="pln">
+      renderer</span><span class="pun">.</span><span class="pln">setSize</span><span class="pun">(</span><span class="pln">document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">clientWidth</span><span class="pun">,</span><span class="pln"> 
+                       document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">clientHeight</span><span class="pun">);</span></pre>
+    <p>Plug it in</p>
+    <pre class="prettyprint"><span class="pln">      document</span><span class="pun">.</span><span class="pln">body</span><span class="pun">.</span><span class="pln">appendChild</span><span class="pun">(</span><span class="pln">renderer</span><span class="pun">.</span><span class="pln">domElement</span><span class="pun">);</span></pre>
+    <p>And make it pretty</p>
+    <pre class="prettyprint"><span class="pln">      renderer</span><span class="pun">.</span><span class="pln">setClearColorHex</span><span class="pun">(</span><span class="lit">0xEEEEEE</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1.0</span><span class="pun">);</span><span class="pln">
+      renderer</span><span class="pun">.</span><span class="pln">clear</span><span class="pun">();</span></pre>
+  </article>
+
+  <article class="nobackground" data-slide-num="18" data-total-slides="47">
+    <h3>Wow!</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article data-slide-num="19" data-total-slides="47">
+    <h3>No, wait, it gets better!</h3>
+    <div>
+    <p>Create a Camera</p>
+    <pre class="prettyprint"><span class="com">// new THREE.PerspectiveCamera(FOV, viewAspectRatio, zNear, zFar);</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> camera </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">PerspectiveCamera</span><span class="pun">(</span><span class="lit">45</span><span class="pun">,</span><span class="pln"> width</span><span class="pun">/</span><span class="pln">height</span><span class="pun">,</span><span class="pln"> </span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10000</span><span class="pun">);</span><span class="pln">
+camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="lit">300</span><span class="pun">;</span></pre>
+    <p>Make a Scene with a Cube</p>
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> scene </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Scene</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> cube </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">CubeGeometry</span><span class="pun">(</span><span class="lit">50</span><span class="pun">,</span><span class="lit">50</span><span class="pun">,</span><span class="lit">50</span><span class="pun">),</span><span class="pln">
+               </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshBasicMaterial</span><span class="pun">({</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0x000000</span><span class="pun">}));</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">cube</span><span class="pun">);</span></pre>
+    <p>And render the Scene from the Camera</p>
+    <pre class="prettyprint"><span class="pln">      renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">,</span><span class="pln"> camera</span><span class="pun">);</span></pre>
+    </div>
+  </article>
+
+  <article class="nobackground" data-slide-num="20" data-total-slides="47">
+    <h3>At least it isn't empty.</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="title" data-slide-num="21" data-total-slides="47">
+    <h2>Animation</h2>
+  </article>
+
+  <article data-slide-num="22" data-total-slides="47">
+    <h3>Can we make it move?</h3>
+    <p>Yes we can!</p>
+    <p class="small">(But it's a manual process.)</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">function</span><span class="pln"> animate</span><span class="pun">(</span><span class="pln">t</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="com">// spin the camera in a circle</span><span class="pln">
+        camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">sin</span><span class="pun">(</span><span class="pln">t</span><span class="pun">/</span><span class="lit">1000</span><span class="pun">)*</span><span class="lit">300</span><span class="pun">;</span><span class="pln">
+        camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> </span><span class="lit">150</span><span class="pun">;</span><span class="pln">
+        camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">cos</span><span class="pun">(</span><span class="pln">t</span><span class="pun">/</span><span class="lit">1000</span><span class="pun">)*</span><span class="lit">300</span><span class="pun">;</span><span class="pln">
+        </span><span class="com">// you need to update lookAt on every frame</span><span class="pln">
+        camera</span><span class="pun">.</span><span class="pln">lookAt</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">.</span><span class="pln">position</span><span class="pun">);</span><span class="pln">
+        </span><span class="com">// renderer automatically clears unless autoClear = false</span><span class="pln">
+        renderer</span><span class="pun">.</span><span class="pln">render</span><span class="pun">(</span><span class="pln">scene</span><span class="pun">,</span><span class="pln"> camera</span><span class="pun">);</span><span class="pln">
+        window</span><span class="pun">.</span><span class="pln">requestAnimationFrame</span><span class="pun">(</span><span class="pln">animate</span><span class="pun">,</span><span class="pln"> renderer</span><span class="pun">.</span><span class="pln">domElement</span><span class="pun">);</span><span class="pln">
+      </span><span class="pun">};</span><span class="pln">
+      animate</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> </span><span class="typ">Date</span><span class="pun">().</span><span class="pln">getTime</span><span class="pun">());</span><span class="pln">
+    </span></pre>
+  </article>
+
+  <article class="nobackground" data-slide-num="23" data-total-slides="47">
+    <h3>Isn't it nice?</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="title" data-slide-num="24" data-total-slides="47">
+    <h2>Lighting</h2>
+  </article>
+
+  <article data-slide-num="25" data-total-slides="47">
+    <h3>Lights</h3>
+    <p>Without light, we live in the dark.</p>
+    <p>Let's create a Light</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> light </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">SpotLight</span><span class="pun">();</span><span class="pln">
+      light</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="pln"> </span><span class="lit">170</span><span class="pun">,</span><span class="pln"> </span><span class="lit">330</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-</span><span class="lit">160</span><span class="pln"> </span><span class="pun">);</span><span class="pln">
+      scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">light</span><span class="pun">);</span></pre>
+    <p>And a lit cube</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> litCube </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">CubeGeometry</span><span class="pun">(</span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">50</span><span class="pun">,</span><span class="pln"> </span><span class="lit">50</span><span class="pun">),</span><span class="pln">
+        </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshLambertMaterial</span><span class="pun">({</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xFFFFFF</span><span class="pun">}));</span><span class="pln">
+      litCube</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> </span><span class="lit">50</span><span class="pun">;</span><span class="pln">
+      scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">litCube</span><span class="pun">);</span></pre>
+  </article>
+
+  <article class="nobackground" data-slide-num="26" data-total-slides="47">
+    <h3>There we go!</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article data-slide-num="27" data-total-slides="47">
+    <h3>How about shadows?</h3>
+    <p>Three.js has shadow maps.</p>
+    <p>You need to enable them per-light and per-object.</p>
+    <p>The shadows only work on SpotLights.</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="com">// enable shadows on the renderer</span><span class="pln">
+      renderer</span><span class="pun">.</span><span class="pln">shadowMapEnabled </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+
+      </span><span class="com">// enable shadows for a light</span><span class="pln">
+      light</span><span class="pun">.</span><span class="pln">castShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+
+      </span><span class="com">// enable shadows for an object</span><span class="pln">
+      litCube</span><span class="pun">.</span><span class="pln">castShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+      litCube</span><span class="pun">.</span><span class="pln">receiveShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></pre>
+  </article>
+
+  <article data-slide-num="28" data-total-slides="47">
+    <h3>Added interest</h3>
+    <p>Let's add a ground plane</p>
+    <pre class="prettyprint"><span class="pln">  </span><span class="kwd">var</span><span class="pln"> planeGeo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">PlaneGeometry</span><span class="pun">(</span><span class="lit">400</span><span class="pun">,</span><span class="pln"> </span><span class="lit">200</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> planeMat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshLambertMaterial</span><span class="pun">({</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xFFFFFF</span><span class="pun">});</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> plane </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln">planeGeo</span><span class="pun">,</span><span class="pln"> planeMat</span><span class="pun">);</span><span class="pln">
+  plane</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">/</span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+  plane</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-</span><span class="lit">25</span><span class="pun">;</span><span class="pln">
+  plane</span><span class="pun">.</span><span class="pln">receiveShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+  scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">plane</span><span class="pun">);</span></pre>
+    <p>And make the cube spin</p>
+    <pre class="prettyprint"><span class="pln">  litCube</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">cos</span><span class="pun">(</span><span class="pln">t</span><span class="pun">/</span><span class="lit">600</span><span class="pun">)*</span><span class="lit">85</span><span class="pun">;</span><span class="pln">
+  litCube</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> </span><span class="lit">60</span><span class="pun">-</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">sin</span><span class="pun">(</span><span class="pln">t</span><span class="pun">/</span><span class="lit">900</span><span class="pun">)*</span><span class="lit">25</span><span class="pun">;</span><span class="pln">
+  litCube</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">sin</span><span class="pun">(</span><span class="pln">t</span><span class="pun">/</span><span class="lit">600</span><span class="pun">)*</span><span class="lit">85</span><span class="pun">;</span><span class="pln">
+  litCube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> t</span><span class="pun">/</span><span class="lit">500</span><span class="pun">;</span><span class="pln">
+  litCube</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> t</span><span class="pun">/</span><span class="lit">800</span><span class="pun">;</span></pre>
+  </article>
+
+  <article class="nobackground" data-slide-num="29" data-total-slides="47">
+    <h3>Plus a couple of tweaks</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article data-slide-num="30" data-total-slides="47">
+    <h3>Lighting recap</h3>
+    <p>Set mesh material to <code>new THREE.MeshLambertMaterial</code> or <code>new THREE.MeshPhongMaterial</code></p>
+    <p>Create a light <code>new THREE.SpotLight(color)</code></p>
+    <p>Add the light to the scene <code>scene.add(light)</code></p>
+    <p>Turn on shadows if you need them</p>
+    <pre class="prettyprint"><span class="pln">      scene</span><span class="pun">.</span><span class="pln">shadowMapEnabled </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+      light</span><span class="pun">.</span><span class="pln">castShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">object</span><span class="pun">.</span><span class="pln">castShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+      </span><span class="kwd">object</span><span class="pun">.</span><span class="pln">receiveShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span></pre>
+  </article>
+
+  <article class="title" data-slide-num="31" data-total-slides="47">
+    <h2>Useful uses</h2>
+  </article>
+
+  <article data-slide-num="32" data-total-slides="47">
+    <h3>Bar graph</h3>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> grid </span><span class="pun">=</span><span class="pln"> </span><span class="com">/* 2D Array */</span><span class="pln">
+      </span><span class="kwd">var</span><span class="pln"> barGraph </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Object3D</span><span class="pun">();</span><span class="pln">
+      scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">barGraph</span><span class="pun">);</span><span class="pln">
+
+      </span><span class="kwd">var</span><span class="pln"> max </span><span class="pun">=</span><span class="pln"> </span><span class="com">/* Grid max value */</span><span class="pln">
+      </span><span class="kwd">var</span><span class="pln"> mat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">MeshLambertMaterial</span><span class="pun">({</span><span class="pln">color</span><span class="pun">:</span><span class="pln"> </span><span class="lit">0xFFAA55</span><span class="pun">});</span><span class="pln">
+      </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> j</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> j</span><span class="pun">&lt;</span><span class="pln">grid</span><span class="pun">.</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> j</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+        </span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&lt;</span><span class="pln">grid</span><span class="pun">[</span><span class="pln">j</span><span class="pun">].</span><span class="pln">length</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+          </span><span class="kwd">var</span><span class="pln"> barHeight </span><span class="pun">=</span><span class="pln"> grid</span><span class="pun">[</span><span class="pln">j</span><span class="pun">][</span><span class="pln">i</span><span class="pun">]/</span><span class="pln">max </span><span class="pun">*</span><span class="pln"> </span><span class="lit">80</span><span class="pun">;</span><span class="pln">
+          </span><span class="kwd">var</span><span class="pln"> geo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">CubeGeometry</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> barHeight</span><span class="pun">,</span><span class="pln"> </span><span class="lit">8</span><span class="pun">);</span><span class="pln">
+          </span><span class="kwd">var</span><span class="pln"> mesh </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Mesh</span><span class="pun">(</span><span class="pln">geo</span><span class="pun">,</span><span class="pln"> mat</span><span class="pun">);</span><span class="pln">
+          mesh</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">(</span><span class="pln">i</span><span class="pun">-</span><span class="pln">grid</span><span class="pun">[</span><span class="pln">j</span><span class="pun">].</span><span class="pln">length</span><span class="pun">/</span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">16</span><span class="pun">;</span><span class="pln">
+          mesh</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y </span><span class="pun">=</span><span class="pln"> barHeight</span><span class="pun">/</span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+          mesh</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-(</span><span class="pln">j</span><span class="pun">-</span><span class="pln">grid</span><span class="pun">.</span><span class="pln">length</span><span class="pun">/</span><span class="lit">2</span><span class="pun">)</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">16</span><span class="pun">;</span><span class="pln">
+          mesh</span><span class="pun">.</span><span class="pln">castShadow </span><span class="pun">=</span><span class="pln"> mesh</span><span class="pun">.</span><span class="pln">receiveShadow </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">;</span><span class="pln">
+          barGraph</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">mesh</span><span class="pun">);</span><span class="pln">
+        </span><span class="pun">}</span><span class="pln">
+      </span><span class="pun">}</span></pre>
+  </article>
+  
+  <article class="nobackground" data-slide-num="33" data-total-slides="47">
+    <h3>Bar graph in action</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="nobackground" data-slide-num="34" data-total-slides="47">
+    <h3>Scatter plot</h3>
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> scatterPlot </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Object3D</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> mat </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">ParticleBasicMaterial</span><span class="pun">(</span><span class="pln">
+  </span><span class="pun">{</span><span class="pln">vertexColors</span><span class="pun">:</span><span class="pln"> </span><span class="kwd">true</span><span class="pun">,</span><span class="pln"> size</span><span class="pun">:</span><span class="pln"> </span><span class="lit">1.5</span><span class="pun">});</span><span class="pln">
+
+</span><span class="kwd">var</span><span class="pln"> pointCount </span><span class="pun">=</span><span class="pln"> </span><span class="lit">10000</span><span class="pun">;</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> pointGeo </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Geometry</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">for</span><span class="pln"> </span><span class="pun">(</span><span class="kwd">var</span><span class="pln"> i</span><span class="pun">=</span><span class="lit">0</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">&lt;</span><span class="pln">pointCount</span><span class="pun">;</span><span class="pln"> i</span><span class="pun">++)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> </span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">100</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">50</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> x</span><span class="pun">*</span><span class="lit">0.8</span><span class="pun">+</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">20</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">10</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> z </span><span class="pun">=</span><span class="pln"> x</span><span class="pun">*</span><span class="lit">0.7</span><span class="pun">+</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">random</span><span class="pun">()</span><span class="pln"> </span><span class="pun">*</span><span class="pln"> </span><span class="lit">30</span><span class="pln"> </span><span class="pun">-</span><span class="pln"> </span><span class="lit">15</span><span class="pun">;</span><span class="pln">
+  pointGeo</span><span class="pun">.</span><span class="pln">vertices</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vertex</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">(</span><span class="pln">x</span><span class="pun">,</span><span class="pln">y</span><span class="pun">,</span><span class="pln">z</span><span class="pun">)));</span><span class="pln">
+  pointGeo</span><span class="pun">.</span><span class="pln">colors</span><span class="pun">.</span><span class="pln">push</span><span class="pun">(</span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Color</span><span class="pun">().</span><span class="pln">setHSV</span><span class="pun">(</span><span class="pln">
+    </span><span class="pun">(</span><span class="pln">x</span><span class="pun">+</span><span class="lit">50</span><span class="pun">)/</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">z</span><span class="pun">+</span><span class="lit">50</span><span class="pun">)/</span><span class="lit">100</span><span class="pun">,</span><span class="pln"> </span><span class="pun">(</span><span class="pln">y</span><span class="pun">+</span><span class="lit">50</span><span class="pun">)/</span><span class="lit">100</span><span class="pun">));</span><span class="pln">
+</span><span class="pun">}</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> points </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">ParticleSystem</span><span class="pun">(</span><span class="pln">pointGeo</span><span class="pun">,</span><span class="pln"> mat</span><span class="pun">);</span><span class="pln">
+scatterPlot</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">points</span><span class="pun">);</span><span class="pln">
+scene</span><span class="pun">.</span><span class="pln">fog </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">FogExp2</span><span class="pun">(</span><span class="lit">0xFFFFFF</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.0035</span><span class="pun">);</span></pre>
+  </article>
+
+  <article class="nobackground" data-slide-num="35" data-total-slides="47">
+    <h3>Scatter plot in action</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="title" data-slide-num="36" data-total-slides="47">
+    <h2>GUI controls</h2>
+  </article>
+
+  <article data-slide-num="37" data-total-slides="47">
+    <h3>GUI controls</h3>
+    <p>To me, GUI controls have been a pain.</p>
+    <p>Write your own widgets, write your own onchange handlers, write your own interval change polling logic, style it all, hope it scales, gaaaaaah!</p>
+    <p>Let's just use DAT.GUI instead.</p>
+    <pre class="prettyprint"><span class="pln">      </span><span class="kwd">var</span><span class="pln"> gui </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> DAT</span><span class="pun">.</span><span class="pln">GUI</span><span class="pun">();</span><span class="pln">
+      gui</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">cube</span><span class="pun">.</span><span class="pln">scale</span><span class="pun">,</span><span class="pln"> </span><span class="str">'x'</span><span class="pun">).</span><span class="pln">min</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">).</span><span class="pln">max</span><span class="pun">(</span><span class="lit">10</span><span class="pun">).</span><span class="pln">step</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">);</span><span class="pln">
+      gui</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">cube</span><span class="pun">.</span><span class="pln">scale</span><span class="pun">,</span><span class="pln"> </span><span class="str">'y'</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">);</span><span class="pln">
+      gui</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">cube</span><span class="pun">.</span><span class="pln">scale</span><span class="pun">,</span><span class="pln"> </span><span class="str">'z'</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">10</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">);</span></pre>
+    <p>Done!</p>
+    <p><a href="http://code.google.com/p/dat-gui">code.google.com/p/dat-gui</a></p>
+  </article>
+
+  <article class="nobackground" data-slide-num="38" data-total-slides="47">
+    <h3>Scalable cube</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article data-slide-num="39" data-total-slides="47" class="far-past">
+    <h3>But but, where is the <i>pain</i>?</h3>
+    <p>Well, we could do a proxy to control only the currently selected object.</p>
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> controller </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Object3D</span><span class="pun">();</span><span class="pln">
+</span><span class="kwd">var</span><span class="pln"> gui </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> DAT</span><span class="pun">.</span><span class="pln">GUI</span><span class="pun">({</span><span class="pln">width</span><span class="pun">:</span><span class="pln"> </span><span class="lit">160</span><span class="pun">});</span><span class="pln">
+
+controller</span><span class="pun">.</span><span class="pln">setCurrent </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">function</span><span class="pun">(</span><span class="pln">current</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">current </span><span class="pun">=</span><span class="pln"> current</span><span class="pun">;</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">x</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">current</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">x</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">y</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">current</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">y</span><span class="pun">);</span><span class="pln">
+  </span><span class="kwd">this</span><span class="pun">.</span><span class="pln">z</span><span class="pun">.</span><span class="pln">setValue</span><span class="pun">(</span><span class="pln">current</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">z</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">};</span><span class="pln">
+      
+controller</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> gui</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">controller</span><span class="pun">.</span><span class="pln">position</span><span class="pun">,</span><span class="pln"> </span><span class="str">'x'</span><span class="pun">).</span><span class="pln">onChange</span><span class="pun">(</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">v</span><span class="pun">){</span><span class="pln">
+  controller</span><span class="pun">.</span><span class="pln">current</span><span class="pun">.</span><span class="pln">position</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> v</span><span class="pun">;</span><span class="pln">
+</span><span class="pun">});</span><span class="pln">
+</span><span class="com">// etc.</span></pre>
+  </article>
+
+  <article data-slide-num="40" data-total-slides="47" class="past">
+    <h3>How to select?</h3>
+    <p>Project a ray into the scene and find intersecting objects.</p>
+    <pre class="prettyprint"><span class="kwd">var</span><span class="pln"> projector </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Projector</span><span class="pun">();</span><span class="pln">
+window</span><span class="pun">.</span><span class="pln">addEventListener</span><span class="pun">(</span><span class="str">'mousedown'</span><span class="pun">,</span><span class="pln"> </span><span class="kwd">function</span><span class="pln"> </span><span class="pun">(</span><span class="pln">ev</span><span class="pun">){</span><span class="pln">
+  </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">ev</span><span class="pun">.</span><span class="pln">target </span><span class="pun">==</span><span class="pln"> renderer</span><span class="pun">.</span><span class="pln">domElement</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> x </span><span class="pun">=</span><span class="pln"> ev</span><span class="pun">.</span><span class="pln">clientX</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> y </span><span class="pun">=</span><span class="pln"> ev</span><span class="pun">.</span><span class="pln">clientY</span><span class="pun">;</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> v </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Vector3</span><span class="pun">((</span><span class="pln">x</span><span class="pun">/</span><span class="pln">width</span><span class="pun">)*</span><span class="lit">2</span><span class="pun">-</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="pun">-(</span><span class="pln">y</span><span class="pun">/</span><span class="pln">height</span><span class="pun">)*</span><span class="lit">2</span><span class="pun">+</span><span class="lit">1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.5</span><span class="pun">);</span><span class="pln">
+    projector</span><span class="pun">.</span><span class="pln">unprojectVector</span><span class="pun">(</span><span class="pln">v</span><span class="pun">,</span><span class="pln"> camera</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> ray </span><span class="pun">=</span><span class="pln"> </span><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">Ray</span><span class="pun">(</span><span class="pln">camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">,</span><span class="pln"> 
+                            v</span><span class="pun">.</span><span class="pln">subSelf</span><span class="pun">(</span><span class="pln">camera</span><span class="pun">.</span><span class="pln">position</span><span class="pun">).</span><span class="pln">normalize</span><span class="pun">());</span><span class="pln">
+    </span><span class="kwd">var</span><span class="pln"> intersects </span><span class="pun">=</span><span class="pln"> ray</span><span class="pun">.</span><span class="pln">intersectObjects</span><span class="pun">(</span><span class="pln">controller</span><span class="pun">.</span><span class="pln">objects</span><span class="pun">);</span><span class="pln">
+    </span><span class="kwd">if</span><span class="pln"> </span><span class="pun">(</span><span class="pln">intersects</span><span class="pun">.</span><span class="pln">length </span><span class="pun">&gt;</span><span class="pln"> </span><span class="lit">0</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+      controller</span><span class="pun">.</span><span class="pln">setCurrent</span><span class="pun">(</span><span class="pln">intersects</span><span class="pun">[</span><span class="lit">0</span><span class="pun">].</span><span class="kwd">object</span><span class="pun">);</span><span class="pln">
+    </span><span class="pun">}</span><span class="pln">
+  </span><span class="pun">}</span><span class="pln">
+</span><span class="pun">},</span><span class="pln"> </span><span class="kwd">false</span><span class="pun">);</span></pre>
+  </article>
+
+  <article class="nobackground current" data-slide-num="41" data-total-slides="47">
+    <h3>Great cubistan</h3>
+    <iframe src="./Introduction to WebGL_files/three_12.htm"></iframe>
+  </article>
+
+  <article class="title next" data-slide-num="42" data-total-slides="47">
+    <h2>Loading models</h2>
+  </article>
+
+  <article class="far-next" data-slide-num="43" data-total-slides="47">
+    <h3>COLLADA loader</h3>
+    <pre class="prettyprint"><span class="kwd">new</span><span class="pln"> THREE</span><span class="pun">.</span><span class="typ">ColladaLoader</span><span class="pun">().</span><span class="pln">load</span><span class="pun">(</span><span class="str">'models/monster.dae'</span><span class="pun">,</span><span class="pln"> 
+</span><span class="kwd">function</span><span class="pun">(</span><span class="pln">collada</span><span class="pun">)</span><span class="pln"> </span><span class="pun">{</span><span class="pln">
+  </span><span class="kwd">var</span><span class="pln"> model </span><span class="pun">=</span><span class="pln"> collada</span><span class="pun">.</span><span class="pln">scene</span><span class="pun">;</span><span class="pln">
+  model</span><span class="pun">.</span><span class="pln">scale</span><span class="pun">.</span><span class="kwd">set</span><span class="pun">(</span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">,</span><span class="pln"> </span><span class="lit">0.1</span><span class="pun">);</span><span class="pln">
+  model</span><span class="pun">.</span><span class="pln">rotation</span><span class="pun">.</span><span class="pln">x </span><span class="pun">=</span><span class="pln"> </span><span class="pun">-</span><span class="typ">Math</span><span class="pun">.</span><span class="pln">PI</span><span class="pun">/</span><span class="lit">2</span><span class="pun">;</span><span class="pln">
+  model</span><span class="pun">.</span><span class="pln">updateMatrix</span><span class="pun">();</span><span class="pln">
+  scene</span><span class="pun">.</span><span class="pln">add</span><span class="pun">(</span><span class="pln">model</span><span class="pun">);</span><span class="pln">
+</span><span class="pun">});</span></pre>
+    <p>Doesn't look too complicated.</p>
+    <p>Copy-pasted from examples/webgl_collada.html</p>
+    <p>Along with the code to make it animate.</p>
+  </article>
+
+  <article class="nobackground" data-slide-num="44" data-total-slides="47">
+    <h3>Monster</h3>
+    <iframe src="about:blank"></iframe>
+  </article>
+
+  <article class="title" data-slide-num="45" data-total-slides="47">
+    <h2>Conclusion</h2>
+  </article>
+
+  <article data-slide-num="46" data-total-slides="47">
+    <h3>Three.js</h3>
+    <p><a href="https://github.com/mrdoob/three.js/">github.com/mrdoob/three.js</a></p>
+    <p>JavaScript library for 3D graphics</p>
+    <p>Easy to use</p>
+    <p>Efficient</p>
+    <p>Nice feature set</p>
+    <p>DAT.GUI for simple GUIs <a href="http://code.google.com/p/dat-gui">code.google.com/p/dat-gui</a></p>
+  </article>
+  
+  <article class="title-slide" data-slide-num="47" data-total-slides="47">
+    <div>
+      <div data-config-logo="" style="background-image: url(http://www.google.com/events/developerday/2011/static/img/event-prague.png); "></div>
+      <p style="color:#545454;">Thanks!</p>
+      <h3 class="questions">Questions?</h3>
+      <p style="margin-top:0px;">
+        <a rel="author" data-config-gplus="" target="_blank" style="margin-right:10px;text-decoration:none;" href="http://fhtr.org/plus">+<span data-config-name="">Ilmari Heikkinen</span></a>
+        <a rel="author" data-config-twitter="" target="_blank" style="text-decoration:none;" href="http://twitter.com/ilmarihei">@<span data-config-twitter="">ilmarihei</span></a>
+      </p>
+      <p class="info" style="margin-top:5em;font-size:100%;line-height:1.25em;">
+        Slides: <a data-config-slides="" target="_blank" href="http://gdd11-webgl.appspot.com/"><span data-config-slides="">http://gdd11-webgl.appspot.com</span></a><br>
+        <!--Feedback: <a data-config-feedback target="_blank"><span data-config-feedback></span></a><br>-->
+      </p>
+    </div>
+  </article>
+
+<div class="slide-area" id="prev-slide-area"></div><div class="slide-area" id="next-slide-area"></div></section>
+
+<!--
+<script> 
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-XXXXXX-X']);
+  _gaq.push(['_trackPageview']);
+ 
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script> 
+<!--[if IE]>
+<script src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js"></script>
+<script>CFInstall.check({mode: 'overlay'});</script>
+<![endif]-->
+
+
+
+<link rel="stylesheet" type="text/css" href="./Introduction to WebGL_files/styles.css"><script type="text/javascript" src="./Introduction to WebGL_files/prettify.js"></script><div id="shadowMeasureIt"></div><div id="divCoordMeasureIt"></div><div id="divRectangleMeasureIt"><div id="divRectangleBGMeasureIt"></div></div></body></html>
