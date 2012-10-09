@@ -18,25 +18,10 @@ With javascript frameworks three.js (webgl - 3D stuff) and dat.gui (controls) th
 
 And I’m sure the urbanism blogosphere would lap it up.
 
-To do:
+For a to do list, see the "Issues" tab in Github. It's in reverse order.
 
-* better camera controls for full fly-around (the standard ones messed with dat.gui: maybe just need specific div for rendering to)
-* add lots" button
-* "vary lot size" slider
-* createLane button (and remove lane)
-* individual building control - perhaps like cubistan with a selection ray (also include a "select all" button to, e.g., modify all setbacks)
-* individual lane widths, heights and colours. (Heights especially important for multi-way boulevards which have a curbed divider between the access lane and the through lanes.)
-* some way to choose whether adjustments happen to individual lots, buildings, lanes or to all lots, buildings lanes (see the cubistan example for projecting a ray to select an object - can we select multiple objects? only makes sense to allow multiple select of objects of the same type, i.e. lot, lane or primary building)
-* different floor heights
-* sloped top floor (roof)
-* general code tidy up: functions, variable names
-* presaved settings (dat.gui hopefully makes this easy) with photos for T1 to T6, Vancouver local street, arterial, Paris street, boulevard etc.
-* lighting and shadow (just a question of three.js camera settings)
-* add street textures: I have tarmac, sidewalk textures
-* add trees, cars, people, bikes to street (I'm imagining a single 3D model of each imported from sketchup)
-* frill: dynamic measurement brackets showing, for example, lane widths* secondary suites (laneway house, or at least garage)
 
 
 More references:
 
-The first dozen slides here are key: http://revelstokeudb.com/wp-content/uploads/2010/06/Revelstoke-Closing-Presentation.pdf
+The first dozen slides here show form definition for a real neighborhood: http://revelstokeudb.com/wp-content/uploads/2010/06/Revelstoke-Closing-Presentation.pdf
