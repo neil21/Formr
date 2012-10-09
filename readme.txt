@@ -35,3 +35,8 @@ To do:
 * add street textures: I have tarmac, sidewalk textures
 * add trees, cars, people, bikes to street (I'm imagining a single 3D model of each imported from sketchup)
 * frill: dynamic measurement brackets showing, for example, lane widths* secondary suites (laneway house, or at least garage)
+
+
+More references:
+
+The first dozen slides here are key: http://revelstokeudb.com/wp-content/uploads/2010/06/Revelstoke-Closing-Presentation.pdf
