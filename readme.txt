@@ -1,7 +1,11 @@
 Live Demo: http://neil21.github.com/Formr/formr.html
 
 
-For most explanation and motivation see here: http://stroadtoboulevard.tumblr.com/formr
+*****
+* For most explanation and motivation see here: http://stroadtoboulevard.tumblr.com/formr
+*
+* For the "to do" list, see Issues. Dive in! Learn some WebGL (3D in the browser)! Tell your friends! 
+*****
 
 The purpose of this webapp is to be able to see the impact of different regulated numbers (setback, height, travel lane and sidewalk width) on the �feel� of the street.
 
