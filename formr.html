@@ -1,8 +1,13 @@
 <!DOCTYPE html>
+
 <html>
   <head>
+    <!--
     <script type="text/javascript" src="https://raw.github.com/mrdoob/three.js/ef5f05d71bb33e5811560851547fe4f0bc33e153/build/three.min.js"></script>
     <script type="text/javascript" src="http://dat-gui.googlecode.com/git-history/a3ae8c6627d23c19a140dd2dcadce48375562877/build/dat.gui.min.js"></script>	
+    -->
+    <script type="text/javascript" src="scripts/three.min.js"></script>
+    <script type="text/javascript" src="scripts/dat.gui.min.js"></script>	
     <script src="scripts/ColladaLoader.js"></script>
     <title>Formr</title>
   </head>
@@ -11,21 +16,6 @@
   <p style="display:block;margin:0 auto;font-family:helvetica, arial, sans-serif;font-size:smaller">arrow keys to move, a bit</p>
   
 <script>
-
-/*
-To do:
-
-better camera (standard ones messed with dat.gui: maybe just need specific div for rendering to)
-"add lots" button
-"vary lot size" slider
-createLane button
-individual lane widths, heights and colours
-different floor heights
-sloped top floor (roof)
-add textures
-add trees, cars, people, bikes to street (I'm imagining a single 3D model of each imported from sketchup)
-individual building control - perhaps like cubistan with a selection ray (also include a "select all" button)
-*/
 
 var camera, scene, renderer, controls;
 var geometry, material, mesh;
@@ -46,7 +36,7 @@ var defaultsidesetback = 2;
 
 var defaultnumberfloors = 3;
 //metres (2m carpet to ceiling plus 0.5m insulation, piping etc.)
-var defaultfloorheight = 2.5;
+var defaultfloorheight = 2.8;
 var groundfloorextraheight = 1; //metres
 // metres - negative "extra" just to keep the math consistent;
 // we'll worry about sloping later
@@ -63,12 +53,12 @@ var totalstreetwidth,
 var street = [];
 var lots = [];
 var buildings = [];
-var params = {
-	lanewidthparameter: defaultlanewidth,
-	sidesetbackparameter: defaultsidesetback,
-	rearsetbackparameter: defaultrearsetback,
-	frontsetbackparameter: defaultfrontsetback,
-	floorsparameter: defaultnumberfloors
+var conf = {
+	lanewidth: defaultlanewidth,
+	sidesetback: defaultsidesetback,
+	rearsetback: defaultrearsetback,
+	frontsetback: defaultfrontsetback,
+	floorcount: defaultnumberfloors
 }
 
 var i; //for loops
@@ -77,11 +67,10 @@ var i; //for loops
 var LEFTSIDE = 1;
 var RIGHTSIDE = -1;
 
-	init();
-	animate();
+init();
 
 var gui = new dat.GUI();
-var lanecontroller = gui.add(params, 'lanewidthparameter', 1.5, 5, 0.1)
+var lanecontroller = gui.add(conf, 'lanewidth', 1.5, 5, 0.1)
 	 //type, variable name, min (1.5m sidewalk), max (5m woonerf?), step
 	.name("Lane Width")
 	.onChange(laneUpdate) 
@@ -95,7 +84,7 @@ function laneUpdate () {
 		//slightly confusing nomenclature: street.length is just
 		//the number of lanes (so really more akin to street width)
 		//since street[] is an array of lanes
-		street[i] = updateLane(street[i], params.lanewidthparameter);
+		street[i] = updateLane(street[i], conf.lanewidth);
 		if(street[i].laneSide == LEFTSIDE){
 			total_left_streetwidth += street[i].laneWidth; //keep track of total street width
 		} else {
@@ -112,41 +101,41 @@ function laneUpdate () {
 		}
 		lots[i] = updateLot(lots[i], newtotalstreetsidewidth);
 	}
-
+  renderer.render( scene, camera );
 }
 
-var sidesetbackcontroller = gui.add(params, 'sidesetbackparameter', 0, defaultlotwidth/2, 0.1)
+var sidesetbackcontroller = gui.add(conf, 'sidesetback', 0, defaultlotwidth/2, 0.1)
 	.name("Side Setback");
 sidesetbackcontroller.onChange( function() {
 	for (i=0; i < buildings.length; i++){
-		updateSidesetback(buildings[i], params.sidesetbackparameter);
+		updateSidesetback(buildings[i], conf.sidesetback);
 	}
 });
 
-var rearsetbackcontroller = gui.add(params, 'rearsetbackparameter', 0, defaultlotdepth, 0.1)
+var rearsetbackcontroller = gui.add(conf, 'rearsetback', 0, defaultlotdepth, 0.1)
 	.name("Rear Setback");
 rearsetbackcontroller.onChange( function() {
 	for (i=0; i < buildings.length; i++){
-		updateRearsetback(buildings[i], params.rearsetbackparameter);
+		updateRearsetback(buildings[i], conf.rearsetback);
 	}
 });
 
-var frontsetbackcontroller = gui.add(params, 'frontsetbackparameter', 0, defaultlotdepth, 0.1)
+var frontsetbackcontroller = gui.add(conf, 'frontsetback', 0, defaultlotdepth, 0.1)
 	.name("Front Setback");
 frontsetbackcontroller.onChange( function() {
 	for (i=0; i < buildings.length; i++){
-		updateFrontsetback(buildings[i], params.frontsetbackparameter);
+		updateFrontsetback(buildings[i], conf.frontsetback);
 	}
 });
 
-var floorscontroller = gui.add(params, 'floorsparameter')
+var floorscontroller = gui.add(conf, 'floorcount')
 	.min(0)
 	.max(8)
 	.step(1)
 	.name("Floors");
 floorscontroller.onChange( function(e) {
 	for (i=0; i < buildings.length; i++){
-		updateFloors(buildings[i], params.floorsparameter);
+		updateFloors(buildings[i], conf.floorcount);
 	}
 });
 
@@ -161,12 +150,13 @@ function createBuilding(lot, frontsetback, rearsetback, sidesetback, floors){
 	var frontage = lot.frontage - 2*sidesetback; //15 - 2*2
 	var height = curbheight + (floors * defaultfloorheight); //0.05 + (3*2)
 	geometry = new THREE.CubeGeometry(depth, height, frontage );
-	var wallMaterial = new THREE.MeshBasicMaterial( { color: 0x111111*Math.random() } );
-	material = new THREE.MeshBasicMaterial( { color: 0xE2725B , wireframe: true, transparent: false } );
+	//var wallMaterial = new THREE.MeshBasicMaterial( { color: 0xc9a36f , transparent:false } );
+	var wallMaterial = new THREE.MeshBasicMaterial( { color: 0xbcb3a6*Math.random() } );
+	material = new THREE.MeshBasicMaterial( { color: 0xE2725B , wireframe: true }) //, transparent: false } );
 	var floorGeom = new THREE.Geometry();
-	var floorGridMaterial = new THREE.LineBasicMaterial( { color: 0xcccccc, opacity: 0.2 } );
 	building = new THREE.SceneUtils.createMultiMaterialObject(geometry, [material, wallMaterial]);
 	building.position.y = curbheight/2 + height/2; //move it up to proper spot
+
 /*
 	var unbuilt = floors
 		, level
@@ -208,7 +198,8 @@ function updateSidesetback(building, newsidesetback){
 	building.scale.z = newbuildingfrontage/defaultbuildingfrontage;
 	//lane.position.x += lane.laneSide*(newLaneWidth-oldLaneWidth)/2;
 
-	return building;
+  renderer.render( scene, camera );
+	//return building;
 }
 
 function updateFrontsetback(building, newfrontsetback){
@@ -224,7 +215,8 @@ function updateFrontsetback(building, newfrontsetback){
 	building.frontsetback = newfrontsetback;
 	building.depth = newbuildingdepth;
 
-	return building;
+  renderer.render( scene, camera );
+	//return building;
 }
 
 
@@ -246,7 +238,8 @@ function updateRearsetback(building, newrearsetback){
 	building.rearsetback = newrearsetback;
 	building.depth = newbuildingdepth;
 
-	return building;
+	//return building;
+  renderer.render( scene, camera );
 }
 
 function updateFloors(building, newfloors){
@@ -260,7 +253,8 @@ function updateFloors(building, newfloors){
 	building.floors = newfloors;
 	building.height = newbuildingheight;
 
-	return building;
+	//return building;
+  renderer.render( scene, camera );
 }
 
 function updateBuilding(building,frontsetback, rearsetback, sidesetback, floors){
@@ -275,7 +269,7 @@ function createLot(frontage, depth, side){
 	geometry = new THREE.CubeGeometry( depth, curbheight, frontage );
 
 	//FUTURE: switch lanetype: different material
-	material = new THREE.MeshBasicMaterial( { color: 0x526F35, wireframe: true } );
+	material = new THREE.MeshBasicMaterial( { color: 0xe0e0e0 }) //,  wireframe: true } );
 
 	lot = new THREE.Mesh(geometry, material);
 
@@ -308,7 +302,7 @@ function createLot(frontage, depth, side){
 		i = buildings.length;
 	}
 	//lot, frontsetback, rearsetback, sidesetback, floors
-	buildings[i] = new createBuilding(lot,defaultfrontsetback,defaultrearsetback,defaultsidesetback,defaultnumberfloors);
+	buildings[i] = createBuilding(lot,defaultfrontsetback,defaultrearsetback,defaultsidesetback,defaultnumberfloors);
 	lot.add(buildings[i]);
 
 return lot;
@@ -376,41 +370,35 @@ function updateLane(lane, newLaneWidth){
 ///////////////////////////////////////////////////////////////////////////
 
 
-	function init() {
-		camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
-		camera.position.z = 30;
-		camera.position.y = 6;
+function init() {
+  camera = new THREE.PerspectiveCamera( 45, window.innerWidth / window.innerHeight, 1, 1000 );
+  camera.position.z = 30;
+  camera.position.y = 6;
 
-	/*
-	controls = new THREE.FlyControls(camera);
-	controls.movementSpeed = 0.1;
-	controls.rollSpeed = 0;
-	//controls.dragToLook = true;
-	*/
-
-			scene = new THREE.Scene();
+  scene = new THREE.Scene();
+  //scene.castShadow = true;
 
 	total_right_streetwidth = 0;
 	total_left_streetwidth = 0;
 	totalstreetwidth = 0;
 
-	street[0] = new createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, laneheight);
+	street[0] = createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, laneheight);
 	//defaultlanewidth/2
 	total_right_streetwidth += street[0].laneWidth;
-	street[1] = new createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, laneheight);
+	street[1] = createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, laneheight);
 	//-defaultlanewidth/2
 	total_left_streetwidth += street[1].laneWidth;
-	street[2] = new createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, laneheight);
+	street[2] = createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, laneheight);
 	//-defaultlanewidth/2
 	total_right_streetwidth += street[2].laneWidth;
-	street[3] = new createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, laneheight);
+	street[3] = createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, laneheight);
 	//-defaultlanewidth/2
 	total_left_streetwidth += street[3].laneWidth;
 	//-defaultlanewidth/2
-	street[4] = new createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, curbheight);
+	street[4] = createLane(defaultlanewidth, RIGHTSIDE, total_right_streetwidth, curbheight);
 	total_right_streetwidth += street[4].laneWidth;
 	//-defaultlanewidth/2
-	street[5] = new createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, curbheight);
+	street[5] = createLane(defaultlanewidth, LEFTSIDE, total_left_streetwidth, curbheight);
 	total_left_streetwidth += street[5].laneWidth;
 
 	totalstreetwidth = total_right_streetwidth + total_left_streetwidth;
@@ -444,6 +432,7 @@ function updateLane(lane, newLaneWidth){
 		//scene.add(collada);
 		scene.add(model);
 		laneUpdate();
+    renderer.render( scene, camera );
 	}
 
 
@@ -461,8 +450,9 @@ function updateLane(lane, newLaneWidth){
 				});
 		totalModels--;
 	}
- 
+
  /*	
+ 
 	sketchupLoader().load('models/cyclist.dae', function (collada) {
 		var model = collada.scene;
 		model.scale.set(0.025, 0.025, 0.025);
@@ -493,16 +483,16 @@ function updateLane(lane, newLaneWidth){
 	container = document.createElement( 'div' );
 	document.body.appendChild( container );
 
-			renderer = new THREE.CanvasRenderer();
+			renderer = new THREE.WebGLRenderer();
 			renderer.setSize( window.innerWidth, window.innerHeight );
 
 			container.appendChild( renderer.domElement );
 
 	}
 
+renderer.render( scene, camera );
 function animate() {
-	requestAnimationFrame( animate );
-	renderer.render( scene, camera );
+	//requestAnimationFrame( animate );
 	//controls.update(1);
 }
 
@@ -529,6 +519,7 @@ function onDocumentKeyDown(event){
 			break;
 	}
 	camera.updateProjectionMatrix();
+  renderer.render( scene, camera );
 }
 
 document.addEventListener('keydown',onDocumentKeyDown,false);
